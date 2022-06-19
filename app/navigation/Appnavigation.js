@@ -5,6 +5,7 @@ import Login from "../screens/Login";
 import Signup from "../screens/Signup";
 import Home from '../screens/Home';
 import Locations from '../screens/Locations';
+import Favourite from '../screens/Favourite';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +18,7 @@ const AppNavigation = () => {
                 <Stack.Screen name="Signup" component={Signup}  options={{animation:"slide_from_left"}}/>
                 <Stack.Screen name='Home' component={Home}  options={{animation:"slide_from_right"}}/>
                 <Stack.Screen name="Location" component={Locations} />
+                <Stack.Screen name="Favourite" component={Favourite} />
             </Stack.Navigator>
         </NavigationContainer>
     )

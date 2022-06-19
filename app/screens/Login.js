@@ -29,7 +29,7 @@ const Login = ({navigation}) => {
 
       <TouchableOpacity
         style={styles.Button}
-        onPress={() => navigation.navigate('Location')}>
+        onPress={() => navigation.navigate('Home')}>
         <Text style={styles.ButtonText}>Login</Text>
       </TouchableOpacity>
 
