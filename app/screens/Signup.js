@@ -1,8 +1,16 @@
 import {StyleSheet, Text, SafeAreaView, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {TextInput} from 'react-native-paper';
+import auth from '@react-native-firebase/auth';
 
 const Signup = ({navigation}) => {
+  const [email,setEmail]=React.useState()
+  const [password,setPassword]=React.useState()
+  const handleSignup=async()=>{
+    await auth()
+    .createUserWithEmailAndPassword(email, password)
+    navigation.navigate('Login')
+  }
   return (
     <SafeAreaView style={styles.MainContainer}>
       <Text style={styles.Welcome}>Join Us..</Text>
@@ -15,6 +23,7 @@ const Signup = ({navigation}) => {
         activeOutlineColor={'#8a54ff'}
         mode={'outlined'}
         selectionColor={'#8a54ff'}
+     
       />
       <TextInput
         theme={{roundness: 25, colors: {text: '#fff'}}}
@@ -31,6 +40,7 @@ const Signup = ({navigation}) => {
         placeholderTextColor="#363636"
         activeOutlineColor={'#8a54ff'}
         mode={'outlined'}
+        onChangeText={(value)=>setEmail(value)}
       />
       <TextInput
         theme={{roundness: 25, colors: {text: '#fff'}}}
@@ -39,11 +49,14 @@ const Signup = ({navigation}) => {
         placeholderTextColor="#363636"
         activeOutlineColor={'#8a54ff'}
         mode={'outlined'}
+        onChangeText={(value)=>setPassword(value)}
       />
 
       <TouchableOpacity
         style={styles.Button}
-        onPress={() => navigation.navigate('Login')}>
+        onPress={() => {
+          handleSignup()
+        }}>
         <Text style={styles.ButtonText}>Sign up</Text>
       </TouchableOpacity>
 
@@ -76,7 +89,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'sans-serif-light',
     backgroundColor: '#1a1a1a',
-    padding: 5,
+    padding: 9,
   },
   Button: {
     width: '80%',

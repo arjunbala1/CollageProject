@@ -15,14 +15,14 @@ const Favourite = () => {
       <StatusBar backgroundColor={BackGround} />
 
       <View style={styles.Header}>
-        <AntDesign
+        {/* <AntDesign
           name="arrowleft"
           size={30}
           color={'#fff'}
           style={{position: 'absolute', left: 5}}
-        />
+        /> */}
         <Text style={styles.SelectedTxt}>Selected Location</Text>
-        <Octicons
+        {/* <Octicons
           name="trash"
           size={28}
           color={'#fff'}
@@ -34,7 +34,7 @@ const Favourite = () => {
           size={28}
           color={'#fff'}
           style={{position: 'absolute', left: 360}}
-        />
+        /> */}
       </View>
     
         <FlatList

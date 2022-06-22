@@ -13,12 +13,12 @@ const white = '#fff';
 const Profile = () => {
   return (
     <SafeAreaView style={styles.MainContainer}>
-      <AntDesign
+      {/* <AntDesign
         name="arrowleft"
         size={30}
         color={white}
         style={{position: 'absolute', left: 0}}
-      />
+      /> */}
       <StatusBar backgroundColor={BackGround} />
 
       <Text style={styles.logout}>Profile</Text>

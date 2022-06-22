@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "927869697034",
+    "project_id": "jaunt-amigo-e3836",
+    "storage_bucket": "jaunt-amigo-e3836.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:927869697034:android:4e617e200120e5c0ed73f3",
+        "android_client_info": {
+          "package_name": "com.screens"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "927869697034-56bjbvsrrh1cii5hcnljf55loftlllbb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwQq09aX5RbwaDaZt9_CLInfwLesLSnv8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "927869697034-56bjbvsrrh1cii5hcnljf55loftlllbb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
