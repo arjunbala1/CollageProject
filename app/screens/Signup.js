@@ -2,13 +2,22 @@ import {StyleSheet, Text, SafeAreaView, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {TextInput} from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 const Signup = ({navigation}) => {
   const [email,setEmail]=React.useState()
   const [password,setPassword]=React.useState()
+  const [name,setName]=React.useState()
+  const [phone,setPhone]=React.useState()
   const handleSignup=async()=>{
     await auth()
-    .createUserWithEmailAndPassword(email, password)
+    .createUserWithEmailAndPassword(email, password) .then(() => {
+      firestore().collection('USERS').doc(email).set({
+        Email: email,
+        Name: name,
+        PhoneNumber: phone,
+      });
+    })
     navigation.navigate('Login')
   }
   return (
@@ -23,6 +32,7 @@ const Signup = ({navigation}) => {
         activeOutlineColor={'#8a54ff'}
         mode={'outlined'}
         selectionColor={'#8a54ff'}
+        onChangeText={(value)=>setName(value)}
      
       />
       <TextInput
@@ -32,6 +42,7 @@ const Signup = ({navigation}) => {
         placeholderTextColor="#363636"
         activeOutlineColor={'#8a54ff'}
         mode={'outlined'}
+        onChangeText={(value)=>setPhone(value)}
       />
       <TextInput
         theme={{roundness: 25, colors: {text: '#fff'}}}
@@ -59,6 +70,8 @@ const Signup = ({navigation}) => {
         }}>
         <Text style={styles.ButtonText}>Sign up</Text>
       </TouchableOpacity>
+      
+
 
       <Text onPress={()=>navigation.navigate("Signup")} style={styles.DontHavAcc}>Don't have an account</Text>
     </SafeAreaView>
