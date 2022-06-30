@@ -1,8 +1,39 @@
 import {StyleSheet, Text, SafeAreaView, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {TextInput} from 'react-native-paper';
+import {TextInput,Button} from 'react-native-paper';
+import auth from '@react-native-firebase/auth';
 
 const Login = ({navigation}) => {
+  const handleLogin = () => {
+    if (emailId) {
+      if (password) {
+        auth()
+          .signInWithEmailAndPassword(emailId, password)
+          .then(() => {
+            setIndicator(false);
+            setEmailId('');
+            setPassword('');
+            navigation.navigate('TabNav');
+          })
+          .catch(error => {
+            alert('Error: ', error);
+            setIndicator(false);
+          });
+      } else {
+        alert('Please Enter your Password to Login');
+        setIndicator(false);
+      }
+    } else if (password) {
+      alert('Please Enter your Email Id to Login');
+      setIndicator(false);
+    } else {
+      alert('Please Enter your Email id and Password to Login');
+      setIndicator(false);
+    }
+  };
+  const [emailId, setEmailId] = React.useState();
+  const [password, setPassword] = React.useState();
+  const [indicator, setIndicator] = React.useState(false);
   return (
     <SafeAreaView style={styles.MainContainer}>
       <Text style={styles.Welcome}>Welcome Again...</Text>
@@ -15,6 +46,8 @@ const Login = ({navigation}) => {
         activeOutlineColor={'#8a54ff'}
         mode={'outlined'}
         selectionColor={'#8a54ff'}
+        value={emailId}
+        onChangeText={text => setEmailId(text)}
       />
       <TextInput
         theme={{roundness: 25, colors: {text: '#fff'}}}
@@ -23,15 +56,28 @@ const Login = ({navigation}) => {
         placeholderTextColor="#363636"
         activeOutlineColor={'#8a54ff'}
         mode={'outlined'}
+        value={password}
+        onChangeText={text => setPassword(text)}
       />
 
       <Text style={styles.forgotpassword}>forgot password</Text>
-
+{/* 
       <TouchableOpacity
         style={styles.Button}
-        onPress={() => navigation.navigate('TabNav')}>
+        onPress={() => handleLogin()}>
         <Text style={styles.ButtonText}>Login</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
+       <Button
+          loading={indicator}
+          mode="contained"
+          color="green"
+          style={styles.Button}
+          onPress={() => {
+            setIndicator(true);
+            handleLogin();
+          }}>
+          Login
+        </Button>
 
       <Text onPress={()=>navigation.navigate("Signup")} style={styles.DontHavAcc}>Don't have an account</Text>
     </SafeAreaView>
